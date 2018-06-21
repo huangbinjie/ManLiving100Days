@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./src",
+    "target": "es5",
+    "outDir": "dist",
+    "lib": [
+      "es2015"
+    ],
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@systems/*": [
+        "systems/*"
+      ],
+      "@entities/*": [
+        "entities/*"
+      ]
+    }
+  }
+}
