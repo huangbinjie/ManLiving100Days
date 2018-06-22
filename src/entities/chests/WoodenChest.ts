@@ -1,8 +1,8 @@
 import { AbstractChestEntity } from "./AbstractChest"
-import { NameComponent } from "../../components/Name";
-import { DescComponent } from "../../components/Desc";
 import { BonusComponent } from "@components/Bonus/Bonus";
 import { ChestComponent } from "@components/Chest/Chest";
+import { NameComponent } from "@components/name/Name";
+import { DescComponent } from "@components/desc/Desc";
 
 export class WoodenChestEntity extends AbstractChestEntity {
   public chestComponent = new ChestComponent()

@@ -1,12 +1,12 @@
 import { AbstractActor } from "js-actor"
-import { WaitingInput } from "../input/messages/WaitingInput"
-import { InputComplete } from "../input/messages/InputComplete"
 import { IEntity } from "entities/IEntity";
 import { ChangeStage } from "@components/Stage/messages/ChangeStage";
 import { GameStart } from "@components/Menu/messages/GameStart";
 import { AbstractStageEntity } from "@entities/stages/AbstractStage";
 import { Stage1Entity } from "@entities/stages/stage1";
 import { AbstractChestEntity, AbstractCharacterEntity } from "entities";
+import { WaitingInput } from "@components/input/messages/WaitingInput";
+import { InputComplete } from "@components/input/messages/InputComplete";
 
 export class StageSystem extends AbstractActor {
   protected createReceive() {
@@ -15,6 +15,7 @@ export class StageSystem extends AbstractActor {
         const stage1 = new Stage1Entity()
         this.describeStage(stage1)
         this.tellLogger(gameStart)
+        this.context.system.tell("Input", new WaitingInput(stage1.stageComponent.items))
       })
       .match(ChangeStage, changeStage => {
         this.describeStage(changeStage.stage)

@@ -1,6 +1,4 @@
 import { AbstractActor } from "js-actor"
-import { WaitingInput } from "../input/messages/WaitingInput"
-import { InputComplete } from "../input/messages/InputComplete"
 import { IEntity } from "entities/IEntity";
 import { ChangeStage } from "@components/Stage/messages/ChangeStage";
 import { Welcome } from "@components/Welcome/messages/Welcome";
@@ -8,6 +6,8 @@ import { GameStartMenuEntity } from "@entities/menus/GameStart/GameStart";
 import { Stage1Entity } from "@entities/stages/stage1";
 import { SelectMenu } from "@components/menu/messages/SelectMenu";
 import { AbstractMenuEntity } from "@entities/menus/AbstractMenu";
+import { InputComplete } from "@components/input/messages/InputComplete";
+import { WaitingInput } from "@components/input/messages/WaitingInput";
 
 export class WelcomeSystem extends AbstractActor {
   protected createReceive() {

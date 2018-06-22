@@ -1,9 +1,9 @@
 import { IEntity } from "../IEntity";
-import { WeaponComponent } from "../../components/Weapon";
-import { NameComponent } from "../../components/Name";
-import { DescComponent } from "../../components/Desc";
 import { AttackComponent } from "../../components/Attack/Attack";
 import { BehaviorComponent } from "../../components/Behavior/Behavior";
+import { WeaponComponent } from "@components/weapon/Weapon";
+import { NameComponent } from "@components/name/Name";
+import { DescComponent } from "@components/desc/Desc";
 
 export abstract class AbstractWeaponEntity implements IEntity {
   public weaponComponent = new WeaponComponent()

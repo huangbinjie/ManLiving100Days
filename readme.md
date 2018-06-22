@@ -21,9 +21,10 @@ ECS 强调我有什么。根据有什么决定这个实体做什么
 const Player = [new PlayerComponent, new MoveComponent, new AttactComponent]
 ```
 
-因为有了 PlayerComponent 我们知道这个实体是玩家。因为有了 MoveComponent，我们知道这个实体可以攻击。
+因为有了 PlayerComponent 我们知道这个实体是玩家。因为有了 MoveComponent，我们知道这个实体可以移动。
 
 综合看来，正如知乎上说的
+
 |> 感觉ECS比OOP更符合现实物理世界，毕竟事物(Entity)的变化并不是本身在驱动，而是规律(System)在驱动，而且从各个层面和尺度(Component)呈现的变化不同。
 
 ### Entity
@@ -54,4 +55,4 @@ const Player = [new PlayerComponent, new MoveComponent, new AttactComponent]
 
 + 系统无状态
 + 系统不依赖其他系统
-+ 系统处理组件行为和系统行为
++ 系统处理组件行为(不确定有没有系统行为，理解不够)

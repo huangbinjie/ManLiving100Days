@@ -1,8 +1,8 @@
 import { AbstractWeaponEntity } from "../weapons/AbstractWeapon"
 import { IEntity } from "../IEntity"
-import { NameComponent } from "../../components/Name"
-import { HealthComponent } from "../../components/Health"
-import { EquipmentComponent } from "@components/Equipment";
+import { NameComponent } from "../../components/name/Name"
+import { HealthComponent } from "../../components/health/Health"
+import { EquipmentComponent } from "@components/equipment/Equipment"
 
 export abstract class AbstractCharacterEntity implements IEntity {
   public abstract nameComponent: NameComponent
