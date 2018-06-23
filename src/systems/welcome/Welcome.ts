@@ -2,7 +2,7 @@ import { AbstractActor } from "js-actor"
 import { IEntity } from "entities/IEntity";
 import { ChangeStage } from "@components/Stage/messages/ChangeStage";
 import { Welcome } from "@components/Welcome/messages/Welcome";
-import { GameStartMenuEntity } from "@entities/menus/GameStart/GameStart";
+import { GameStartMenuEntity } from "@entities/menus/GameStart";
 import { Stage1Entity } from "@entities/stages/stage1";
 import { SelectMenu } from "@components/menu/messages/SelectMenu";
 import { AbstractMenuEntity } from "@entities/menus/AbstractMenu";
@@ -25,7 +25,7 @@ export class WelcomeSystem extends AbstractActor {
       .match(InputComplete, inputComplete => {
         // 欢迎页只有菜单，直接 cast 了
         const item = inputComplete.item as AbstractMenuEntity
-        this.context.system.tell("*", new item.behaviorComponent.value)
+        this.context.system.tell("*", item.behaviorComponent.value)
       })
       .build()
   }

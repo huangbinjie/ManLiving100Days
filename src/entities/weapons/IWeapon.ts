@@ -5,10 +5,10 @@ import { WeaponComponent } from "@components/weapon/Weapon";
 import { NameComponent } from "@components/name/Name";
 import { DescComponent } from "@components/desc/Desc";
 
-export abstract class AbstractWeaponEntity implements IEntity {
-  public weaponComponent = new WeaponComponent()
-  public nameComponent: NameComponent
-  public descComponent: DescComponent
-  public attackComponent: AttackComponent
-  public behaviorComponent?: BehaviorComponent
+export interface IWeaponEntity extends IEntity {
+  weaponComponent: WeaponComponent
+  nameComponent: NameComponent
+  descComponent: DescComponent
+  attackComponent: AttackComponent
+  behaviorComponent?: BehaviorComponent
 }

@@ -1,8 +1,8 @@
-import { AbstractWeapon } from "entities/weapons/AbstractWeapon";
+import { AbstractWeaponEntity } from "entities/weapons/AbstractWeapon";
 
 export class EquipmentComponent implements IComponent {
   constructor(
-    public weapon: AbstractWeapon,
+    public weapon?: AbstractWeaponEntity,
     // public armor
   ) { }
 }

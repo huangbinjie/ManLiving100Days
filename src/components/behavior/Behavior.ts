@@ -1,3 +1,3 @@
 export class BehaviorComponent {
-  constructor(public value: new () => object) { }
+  constructor(public value: object) { }
 }

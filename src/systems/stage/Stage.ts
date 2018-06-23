@@ -1,12 +1,12 @@
 import { AbstractActor } from "js-actor"
 import { IEntity } from "entities/IEntity";
 import { ChangeStage } from "@components/Stage/messages/ChangeStage";
-import { GameStart } from "@components/Menu/messages/GameStart";
 import { AbstractStageEntity } from "@entities/stages/AbstractStage";
 import { Stage1Entity } from "@entities/stages/stage1";
 import { AbstractChestEntity, AbstractCharacterEntity } from "entities";
 import { WaitingInput } from "@components/input/messages/WaitingInput";
 import { InputComplete } from "@components/input/messages/InputComplete";
+import { GameStart } from "@components/welcome/messages/GameStart";
 
 export class StageSystem extends AbstractActor {
   protected createReceive() {
@@ -27,7 +27,7 @@ export class StageSystem extends AbstractActor {
         if (item instanceof AbstractStageEntity) {
           this.getSelf().tell(new ChangeStage(item))
         } else if (item instanceof AbstractChestEntity) {
-
+          
         } else if (item instanceof AbstractCharacterEntity) {
 
         }

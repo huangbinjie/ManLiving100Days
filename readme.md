@@ -56,3 +56,9 @@ const Player = [new PlayerComponent, new MoveComponent, new AttactComponent]
 + 系统无状态
 + 系统不依赖其他系统
 + 系统处理组件行为(不确定有没有系统行为，理解不够)
+
+## 素材
+
+剧情介绍：https://zhidao.baidu.com/question/102465003.html
+剧情对话：https://tieba.baidu.com/p/4718152154?red_tag=2728916468
+
