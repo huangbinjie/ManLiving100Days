@@ -9,6 +9,7 @@ import { IMenuEntity } from "@entities/menus/IMenu";
 import { MenuComponent } from "@components/Menu/Menu";
 import { BehaviorComponent } from "@components/Behavior/Behavior";
 import { TuGuai } from "@entities/characters/stage0/ToGuai";
+import { Stage1Entity } from "@entities/stages/stage1";
 
 /**
  * [罗刹洞（梦中）]
@@ -20,7 +21,6 @@ export class Stage0Entity implements IStageEntity {
   public stageComponent: StageComponent
 
   constructor() {
-    const tuguai = new TuGuai()
-    this.stageComponent = new StageComponent([tuguai])
+    this.stageComponent = new StageComponent([new TuGuai(), new Stage1Entity()])
   }
 }

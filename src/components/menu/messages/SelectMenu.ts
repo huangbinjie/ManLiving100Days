@@ -1,5 +1,5 @@
-import { AbstractMenuEntity } from "@entities/menus/AbstractMenu";
+import { IMenuEntity } from "@entities/menus/IMenu";
 
 export class SelectMenu {
-  constructor(public value: AbstractMenuEntity) { }
+  constructor(public value: IMenuEntity) { }
 }

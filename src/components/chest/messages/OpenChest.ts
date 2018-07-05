@@ -1,5 +1,5 @@
-import { AbstractChestEntity } from "entities";
+import { IChestEntity } from "@entities/chests";
 
 export class OpenChest {
-  constructor(public chest: AbstractChestEntity) { }
+  constructor(public chest: IChestEntity) { }
 }

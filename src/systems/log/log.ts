@@ -2,7 +2,6 @@ import { AbstractActor } from "js-actor"
 import { Welcome } from "@components/Welcome/messages/Welcome";
 import { ChangeStage } from "@components/Stage/messages/ChangeStage";
 import { OpenChest } from "@components/chest/messages/OpenChest";
-import { open } from "inspector";
 import { GameStart } from "@components/welcome/messages/GameStart";
 import { SelectCharacter } from "@components/stage/messages/SelectCharacter";
 

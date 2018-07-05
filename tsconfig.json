@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
-    "strict": true,
+    "strict": false,
     "baseUrl": "./src",
     "target": "es5",
-    "outDir": "dist",
+    "outDir": "build",
     "lib": [
+      "dom",
       "es2015"
     ],
     "paths": {
+      "*": [
+        "*"
+      ],
       "@components/*": [
         "components/*"
       ],

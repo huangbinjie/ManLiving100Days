@@ -14,10 +14,11 @@ export class Game {
 
     this.system.actorOf(new StageSystem, "StageSystem")
     this.system.actorOf(new InputSystem, "InputSystem")
-    this.system.actorOf(new WelcomeSystem, "WelcomSystem")
+    this.system.actorOf(new WelcomeSystem, "WelcomeSystem")
     this.system.actorOf(new LogSystem, "LogSystem")
-
 
     this.system.tell("WelcomeSystem", new Welcome())
   }
 }
+
+new Game().start()

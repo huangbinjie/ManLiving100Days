@@ -22,7 +22,7 @@ export class StageSystem extends AbstractActor {
         const stage0 = new Stage0Entity()
         describeStage(stage0)
         this.tellLogger(gameStart)
-        this.context.system.tell("Input", new WaitingSelectStageItem(stage0))
+        this.context.system.tell("InputSystem", new WaitingSelectStageItem(stage0))
       })
       .match(SelectStageItemComplete, inputComplete => {
         const item = inputComplete.stage.stageComponent.items[inputComplete.index]
@@ -41,7 +41,7 @@ export class StageSystem extends AbstractActor {
         }
         interactiveMenus.push("返回")
         console.info(describeInteractiveMenus(interactiveMenus))
-        this.context.system.tell("Input", new WaitingInteractWithStage(inputComplete.stage, item, interactiveMenus))
+        this.context.system.tell("InputSystem", new WaitingInteractWithStage(inputComplete.stage, item, interactiveMenus))
       })
       .match(InteractWithStageComplete, response => {
         switch (response.value) {
@@ -56,7 +56,7 @@ export class StageSystem extends AbstractActor {
   }
 
   private tellLogger(message: object) {
-    this.context.system.tell("Logger", message)
+    this.context.system.tell("LogSystem", message)
   }
 }
 
