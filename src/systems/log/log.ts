@@ -1,10 +1,15 @@
 import { AbstractActor } from "js-actor"
 import { Welcome } from "@components/Welcome/messages/Welcome";
-import { GameStart } from "@components/Menu/messages/GameStart";
 import { ChangeStage } from "@components/Stage/messages/ChangeStage";
 import { OpenChest } from "@components/chest/messages/OpenChest";
 import { open } from "inspector";
+import { GameStart } from "@components/welcome/messages/GameStart";
+import { SelectCharacter } from "@components/stage/messages/SelectCharacter";
 
+/**
+ * 处理系统中各种需要打印和输出的消息
+ * TODO 染色，不同类型的消息不同的颜色
+ */
 export class LogSystem extends AbstractActor {
 
   public createReceive() {

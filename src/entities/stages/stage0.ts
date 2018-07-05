@@ -1,13 +1,14 @@
-import { WoodenChestEntity } from "../chests/WoodenChest"
-import { ICharacterEntity } from "../characters/ICharacter"
-import { Stage2Entity } from "./stage2"
+
 import { StageComponent } from "@components/Stage/Stage";
-import { TravelerSwordEntity } from "../weapons/sword/TravelerSword/TravelerSword";
 import { BonusComponent } from "@components/Bonus/Bonus";
 import { NameComponent } from "@components/name/Name";
 import { DescComponent } from "@components/desc/Desc";
-import { LuoChaGuiPo } from "@entities/characters/LuoChaGuiPo";
 import { IStageEntity } from "@entities/stages/IStage";
+import { LuoChaGuiPo } from "@entities/characters/stage0/LuoChaGuiPo";
+import { IMenuEntity } from "@entities/menus/IMenu";
+import { MenuComponent } from "@components/Menu/Menu";
+import { BehaviorComponent } from "@components/Behavior/Behavior";
+import { TuGuai } from "@entities/characters/stage0/ToGuai";
 
 /**
  * [罗刹洞（梦中）]
@@ -19,7 +20,7 @@ export class Stage0Entity implements IStageEntity {
   public stageComponent: StageComponent
 
   constructor() {
-    const luochaguipo = new LuoChaGuiPo()
-    this.stageComponent = new StageComponent([luochaguipo])
+    const tuguai = new TuGuai()
+    this.stageComponent = new StageComponent([tuguai])
   }
 }

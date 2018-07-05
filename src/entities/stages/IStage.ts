@@ -5,6 +5,6 @@ import { DescComponent } from "@components/desc/Desc";
 
 export interface IStageEntity extends IEntity {
   nameComponent: NameComponent
-  descComponent?: DescComponent
+  descComponent: DescComponent
   stageComponent: StageComponent
 }

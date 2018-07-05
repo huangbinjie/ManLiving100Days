@@ -1,5 +1,5 @@
 import { IStageEntity } from "@entities/stages/IStage";
 
-export class ChangeStage {
+export class SelectStage {
   constructor(public stage: IStageEntity) { }
 }
