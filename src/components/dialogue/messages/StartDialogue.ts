@@ -1,3 +1,3 @@
 export class StartDialogue {
-  constructor(dialogues: string[]) { }
+  constructor(public dialogues: string[]) { }
 }

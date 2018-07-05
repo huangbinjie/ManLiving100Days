@@ -14,16 +14,16 @@ export class LogSystem extends AbstractActor {
   public createReceive() {
     return this.receiveBuilder()
       .match(Welcome, welcome => {
-        console.info("欢迎来到仙剑奇侠传 beta.")
+        console.info("欢迎来到仙剑奇侠传 beta. \n")
       })
       .match(GameStart, () => {
-        console.info("游玩愉快.")
+        // console.info("游玩愉快. \n")
       })
       .match(ChangeStage, changeStage => {
-        console.info("你来到了" + changeStage.stage.nameComponent.value)
+        console.info("你来到了" + changeStage.stage.nameComponent.value + "\n")
       })
       .match(OpenChest, openChest => {
-        console.info("你打开了一个" + openChest.chest.nameComponent.value)
+        console.info("你打开了一个" + openChest.chest.nameComponent.value + "\n")
       })
       .build()
   }

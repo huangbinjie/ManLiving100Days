@@ -14,6 +14,7 @@ import { SelectStageItemComplete } from "@components/input/messages/SelectStageI
 import { InteractWithStageComplete } from "@components/input/messages/InteractWithStageComplete";
 import { Stage0Entity } from "@entities/stages/stage0";
 import { IChestEntity } from "@entities/chests";
+import { StartDialogue } from "@components/dialogue/messages/StartDialogue";
 
 export class StageSystem extends AbstractActor {
   protected createReceive() {
@@ -23,6 +24,12 @@ export class StageSystem extends AbstractActor {
         describeStage(stage0)
         this.tellLogger(gameStart)
         this.context.system.tell("InputSystem", new WaitingSelectStageItem(stage0))
+      })
+      .match(ChangeStage, changeStage => {
+        const nextStage = changeStage.stage
+        describeStage(nextStage)
+        this.tellLogger(changeStage)
+        this.context.system.tell("InputSystem", new WaitingSelectStageItem(nextStage))
       })
       .match(SelectStageItemComplete, inputComplete => {
         const item = inputComplete.stage.stageComponent.items[inputComplete.index]
@@ -48,8 +55,12 @@ export class StageSystem extends AbstractActor {
           case "进入":
             this.getSelf().tell(new ChangeStage(response.item as IStageEntity))
             break;
+          case "对话":
+            this.context.system.tell("DialogueSystem", new StartDialogue((response.item as ICharacterEntity).dialogueComponent!.dialogues))
+            break;
           case "返回":
             this.getSelf().tell(new ChangeStage(response.stage))
+            break;
         }
       })
       .build()

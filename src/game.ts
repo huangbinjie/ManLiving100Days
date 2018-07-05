@@ -5,6 +5,7 @@ import { ChangeStage } from "@components/Stage/messages/ChangeStage";
 import { WelcomeSystem } from "@systems/welcome/Welcome";
 import { Welcome } from "@components/Welcome/messages/Welcome";
 import { LogSystem } from "@systems/log/log";
+import { DialogueSystem } from "@systems/dialogue/Dialogue";
 
 export class Game {
   public entities = new Map()
@@ -13,6 +14,7 @@ export class Game {
   public start() {
 
     this.system.actorOf(new StageSystem, "StageSystem")
+    this.system.actorOf(new DialogueSystem, "DialogueSystem")
     this.system.actorOf(new InputSystem, "InputSystem")
     this.system.actorOf(new WelcomeSystem, "WelcomeSystem")
     this.system.actorOf(new LogSystem, "LogSystem")

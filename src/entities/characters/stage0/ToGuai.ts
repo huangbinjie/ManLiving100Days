@@ -14,11 +14,11 @@ import { StartDialogue } from "@components/dialogue/messages/StartDialogue";
 export class TuGuai implements ICharacterEntity {
   public characterComponent = new CharacterComponent()
   public nameComponent = new NameComponent("土怪")
-  public dialogComponent = new DialogueComponent(dialogs)
+  public dialogueComponent = new DialogueComponent(dialogs)
   public behaviorComponent: BehaviorComponent
 
   constructor() {
-    this.behaviorComponent = new BehaviorComponent(new StartDialogue(this.dialogComponent.dialogues))
+    this.behaviorComponent = new BehaviorComponent(new StartDialogue(this.dialogueComponent.dialogues))
   }
 }
 
