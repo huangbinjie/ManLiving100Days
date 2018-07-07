@@ -9,6 +9,7 @@ import { IMenuEntity } from "@entities/menus/IMenu";
 import { WaitingWelcomeInput } from "@components/welcome/messages/WaitingInput";
 import { WelcomeInputComplete } from "@components/welcome/messages/InputComplete";
 import { menu } from "utils/console";
+import { GameStart } from "@components/welcome/messages/GameStart";
 
 export class WelcomeSystem extends AbstractActor {
   protected createReceive() {
@@ -21,7 +22,9 @@ export class WelcomeSystem extends AbstractActor {
       .match(WelcomeInputComplete, inputComplete => {
         // 欢迎页只有菜单，直接 cast 了
         const item = inputComplete.item as IMenuEntity
-        this.context.system.tell("*", item.behaviorComponent.value)
+        if (item.nameComponent.value === "开始游戏") {
+          this.context.system.tell("*", new GameStart())
+        }
       })
       .build()
   }

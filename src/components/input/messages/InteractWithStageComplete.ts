@@ -1,10 +1,11 @@
 import { IEntity } from "@entities/IEntity";
 import { IStageEntity } from "@entities/stages/IStage";
+import { IMenuEntity } from "@entities/menus/IMenu";
 
 export class InteractWithStageComplete {
   constructor(
     public stage: IStageEntity,
     public item: IEntity,
-    public value: "进入" | "战斗" | "对话" | "打开" | "返回"
+    public menu: IMenuEntity
   ) { }
 }

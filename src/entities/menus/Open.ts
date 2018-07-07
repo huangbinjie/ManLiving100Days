@@ -5,7 +5,7 @@ import { NameComponent } from "@components/name/Name";
 import { GameStart } from "@components/welcome/messages/GameStart";
 import { IMenuEntity } from "@entities/menus/IMenu";
 
-export class GameStartMenuEntity implements IMenuEntity {
-  public nameComponent = new NameComponent("开始游戏")
+export class OpenMenuEntity implements IMenuEntity {
+  public nameComponent = new NameComponent("打开")
   public menuComponent = new MenuComponent()
 }

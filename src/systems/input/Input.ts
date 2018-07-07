@@ -1,5 +1,5 @@
 import { AbstractActor } from "js-actor"
-// import * as process from 'process'
+import * as process from 'process'
 import * as readline from "readline"
 import { WaitingSelectStageItem } from "@components/input/messages/WaitingSelectStageItem";
 import { SelectStageItemComplete } from "@components/input/messages/SelectStageItemComplete";
@@ -31,7 +31,7 @@ export class InputSystem extends AbstractActor {
         const rl = createInterface()
         rl.question("\n我该怎么做？\n\n", answer => {
           rl.close()
-          this.context.system.tell("StageSystem", new InteractWithStageComplete(waitingInput.stage, waitingInput.item, waitingInput.value[+answer - 1]))
+          this.context.system.tell("StageSystem", new InteractWithStageComplete(waitingInput.stage, waitingInput.item, waitingInput.menus[+answer - 1]))
         })
       })
       // 确认对话

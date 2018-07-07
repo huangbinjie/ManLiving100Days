@@ -7,20 +7,22 @@
     "build_js": "tsc",
     "build_js_watch": "tsc --watch",
     "bundle": "parcel watch src/game.js --target=node",
-    "start": "parcel watch src/game.ts --target=node",
+    "start": "webpack --target node --watch",
+    "webpack": "webpack --target node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@types/node": "^10.5.1",
-    "js-actor": "^1.1.8",
-    "world": "0.0.1"
+    "js-actor": "^1.1.9"
   },
   "devDependencies": {
-    "parcel-bundler": "^1.9.4",
-    "parcel-plugin-typescript": "^1.0.0",
-    "typescript": "^2.9.2"
+    "@types/node": "^10.5.1",
+    "ts-loader": "^4.4.2",
+    "tsconfig-paths-webpack-plugin": "^3.2.0",
+    "typescript": "^2.9.2",
+    "webpack": "^4.15.1",
+    "webpack-cli": "^3.0.8"
   }
 }

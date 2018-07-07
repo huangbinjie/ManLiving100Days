@@ -6,5 +6,5 @@ import { NameComponent } from "@components/name/Name";
 export interface IMenuEntity extends IEntity {
   menuComponent: MenuComponent
   nameComponent: NameComponent
-  behaviorComponent: BehaviorComponent
+  behaviorComponent?: BehaviorComponent
 }

@@ -16,6 +16,13 @@ import { Stage0Entity } from "@entities/stages/stage0";
 import { IChestEntity } from "@entities/chests";
 import { StartDialogue } from "@components/dialogue/messages/StartDialogue";
 import { World } from "world";
+import { stage, menu } from "utils/console";
+import { GoIntoMenuEntity } from "@entities/menus/GoInto";
+import { IMenuEntity } from "@entities/menus/IMenu";
+import { BattleMenuEntity } from "@entities/menus/Battle";
+import { DialogueMenuEntity } from "@entities/menus/Dialogue";
+import { OpenMenuEntity } from "@entities/menus/Open";
+import { BackMenuEntity } from "@entities/menus/Back";
 
 export class StageSystem extends AbstractActor {
   constructor(private world: World) {
@@ -24,38 +31,41 @@ export class StageSystem extends AbstractActor {
   protected createReceive() {
     return this.receiveBuilder()
       .match(GameStart, gameStart => {
+        console.clear()
         const stage0 = new Stage0Entity()
-        describeStage(stage0)
+        stage(stage0)
         this.tellLogger(gameStart)
         this.context.system.tell("InputSystem", new WaitingSelectStageItem(stage0))
       })
       .match(ChangeStage, changeStage => {
         const nextStage = changeStage.stage
-        describeStage(nextStage)
+        stage(nextStage)
         this.tellLogger(changeStage)
         this.context.system.tell("InputSystem", new WaitingSelectStageItem(nextStage))
       })
       .match(SelectStageItemComplete, inputComplete => {
+        console.clear()
         const item = inputComplete.stage.stageComponent.items[inputComplete.index]
-        const interactiveMenus: Array<"进入" | "战斗" | "对话" | "打开" | "返回"> = []
+        const interactiveMenus: IMenuEntity[] = []
         if ((item as IStageEntity).stageComponent) {
-          interactiveMenus.push("进入")
+          interactiveMenus.push(new GoIntoMenuEntity())
         }
         if ((item as ICharacterEntity).enemyComponent) {
-          interactiveMenus.push("战斗")
+          interactiveMenus.push(new BattleMenuEntity)
         }
         if ((item as ICharacterEntity).dialogueComponent) {
-          interactiveMenus.push("对话")
+          interactiveMenus.push(new DialogueMenuEntity())
         }
         if ((item as IChestEntity).chestComponent) {
-          interactiveMenus.push("打开")
+          interactiveMenus.push(new OpenMenuEntity())
         }
-        interactiveMenus.push("返回")
-        console.info(describeInteractiveMenus(interactiveMenus))
+        interactiveMenus.push(new BackMenuEntity())
+        menu(interactiveMenus)
         this.context.system.tell("InputSystem", new WaitingInteractWithStage(inputComplete.stage, item, interactiveMenus))
       })
       .match(InteractWithStageComplete, response => {
-        switch (response.value) {
+        console.clear()
+        switch (response.menu.nameComponent.value) {
           case "进入":
             this.getSelf().tell(new ChangeStage(response.item as IStageEntity))
             break;
@@ -73,20 +83,4 @@ export class StageSystem extends AbstractActor {
   private tellLogger(message: object) {
     this.context.system.tell("LogSystem", message)
   }
-}
-
-function describeStage(stage: IStageEntity) {
-  console.info(`
-  地点：${stage.nameComponent.value}\n
-  描述：${stage.descComponent.value}\n
-  这有：${getItemName(stage.stageComponent.items).join("  ")}
-`)
-}
-
-function describeInteractiveMenus(menus: string[]) {
-  return menus.map((menu, index) => `${index + 1}.${menu}`).join(", ")
-}
-
-function getItemName(items: IEntity[]) {
-  return items.map((item, index) => `${index + 1}.${item.nameComponent.value}`)
 }
