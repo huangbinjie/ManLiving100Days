@@ -1,0 +1,16 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var world_1 = require("world");
+var log_1 = require("@systems/log/log");
+var Dialogue_1 = require("@systems/dialogue/Dialogue");
+var Stage_1 = require("@systems/stage/Stage");
+var input_1 = require("@systems/input/input");
+var Welcome_1 = require("@systems/welcome/Welcome");
+var Welcome_2 = require("@components/Welcome/messages/Welcome");
+var world = new world_1.World();
+world.addSystem(Dialogue_1.DialogueSystem);
+world.addSystem(log_1.LogSystem);
+world.addSystem(input_1.InputSystem);
+world.addSystem(Stage_1.StageSystem);
+world.addSystem(Welcome_1.WelcomeSystem);
+world.broadcast(new Welcome_2.Welcome());

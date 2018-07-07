@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "strict": false,
+    "strict": true,
     "baseUrl": "./src",
     "target": "es5",
-    "outDir": "build",
+    // "outDir": "build",
     "lib": [
       "dom",
       "es2015"

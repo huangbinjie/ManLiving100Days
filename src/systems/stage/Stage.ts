@@ -15,8 +15,12 @@ import { InteractWithStageComplete } from "@components/input/messages/InteractWi
 import { Stage0Entity } from "@entities/stages/stage0";
 import { IChestEntity } from "@entities/chests";
 import { StartDialogue } from "@components/dialogue/messages/StartDialogue";
+import { World } from "world";
 
 export class StageSystem extends AbstractActor {
+  constructor(private world: World) {
+    super()
+  }
   protected createReceive() {
     return this.receiveBuilder()
       .match(GameStart, gameStart => {

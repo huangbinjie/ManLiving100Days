@@ -3,8 +3,12 @@ import { OpenChest } from "@components/chest/messages/OpenChest";
 import { StartDialogue } from "@components/dialogue/messages/StartDialogue";
 import { WaitingConfirmNextDialogue } from "@components/dialogue/messages/WaitingConfirmNextDialogue";
 import { NextDialogue } from "@components/dialogue/messages/NextDialogue";
+import { World } from "world";
 
 export class DialogueSystem extends AbstractActor {
+  constructor(private world: World) {
+    super()
+  }
   protected createReceive() {
     return this.receiveBuilder()
       .match(StartDialogue, startDialogue => {

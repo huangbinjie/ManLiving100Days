@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build_js": "tsc",
+    "build_js_watch": "tsc --watch",
+    "bundle": "parcel watch src/game.js --target=node",
     "start": "parcel watch src/game.ts --target=node",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +15,8 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^10.5.1",
-    "js-actor": "^1.1.8"
+    "js-actor": "^1.1.8",
+    "world": "0.0.1"
   },
   "devDependencies": {
     "parcel-bundler": "^1.9.4",

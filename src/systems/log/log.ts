@@ -4,13 +4,16 @@ import { ChangeStage } from "@components/Stage/messages/ChangeStage";
 import { OpenChest } from "@components/chest/messages/OpenChest";
 import { GameStart } from "@components/welcome/messages/GameStart";
 import { SelectCharacter } from "@components/stage/messages/SelectCharacter";
+import { World } from "world";
 
 /**
  * 处理系统中各种需要打印和输出的消息
  * TODO 染色，不同类型的消息不同的颜色
  */
 export class LogSystem extends AbstractActor {
-
+  constructor(private world: World) {
+    super()
+  }
   public createReceive() {
     return this.receiveBuilder()
       .match(Welcome, welcome => {

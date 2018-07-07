@@ -1,6 +1,6 @@
 import { IEntity } from "@entities/IEntity";
 
-export class WaitingInput {
+export class WaitingWelcomeInput {
   constructor(public items: IEntity[]) {
 
   }
