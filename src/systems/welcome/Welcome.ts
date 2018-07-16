@@ -1,29 +1,27 @@
 import { AbstractActor } from "js-actor"
-import { IEntity } from "entities/IEntity";
-import { ChangeStage } from "@components/Stage/messages/ChangeStage";
-import { Welcome } from "@components/Welcome/messages/Welcome";
+import { Welcome } from "./messages/Welcome";
 import { GameStartMenuEntity } from "@entities/menus/GameStart";
-import { Stage1Entity } from "@entities/stages/stage1";
-import { SelectMenu } from "@components/menu/messages/SelectMenu";
-import { IMenuEntity } from "@entities/menus/IMenu";
-import { WaitingWelcomeInput } from "@components/welcome/messages/WaitingInput";
-import { WelcomeInputComplete } from "@components/welcome/messages/InputComplete";
-import { menu } from "utils/console";
-import { GameStart } from "@components/welcome/messages/GameStart";
+import { WaitingWelcomeInput } from "./messages/WaitingInput";
+import { WelcomeInputComplete } from "./messages/InputComplete";
+import { GameStart } from "./messages/GameStart";
+import { World } from "world";
+import { DescribeMenus } from "@components/console/messages/DescribeMenus";
 
 export class WelcomeSystem extends AbstractActor {
+  constructor(private world: World) {
+    super()
+  }
   protected createReceive() {
     return this.receiveBuilder()
       .match(Welcome, welcome => {
         const menus = [new GameStartMenuEntity()]
-        menu(menus)
-        this.context.system.tell("InputSystem", new WaitingWelcomeInput(menus))
+        this.world.broadcast(new DescribeMenus(menus))
+        this.world.broadcast(new WaitingWelcomeInput(menus))
       })
       .match(WelcomeInputComplete, inputComplete => {
         // 欢迎页只有菜单，直接 cast 了
-        const item = inputComplete.item as IMenuEntity
-        if (item.nameComponent.value === "开始游戏") {
-          this.context.system.tell("*", new GameStart())
+        if (inputComplete.item.nameComponent.value === "开始游戏") {
+          this.world.broadcast(new GameStart())
         }
       })
       .build()

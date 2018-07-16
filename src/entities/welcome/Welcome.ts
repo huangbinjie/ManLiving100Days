@@ -1,5 +1,5 @@
-import { IEntity } from "../IEntity"
-import { WelcomeComponent } from "@components/Welcome/Welcome";
+import { IEntity } from "@entities/IEntity"
+import { WelcomeComponent } from "@components/welcome/Welcome";
 import { NameComponent } from "@components/name/Name";
 import { GameStartMenuEntity } from "@entities/menus/GameStart";
 

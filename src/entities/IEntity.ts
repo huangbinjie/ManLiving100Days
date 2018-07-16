@@ -3,5 +3,5 @@ import { NameComponent } from "@components/name/Name";
 
 export interface IEntity {
   nameComponent: NameComponent
-  behavior?: BehaviorComponent
+  behaviorComponent?: BehaviorComponent
 }

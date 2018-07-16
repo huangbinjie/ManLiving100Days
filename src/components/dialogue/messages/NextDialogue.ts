@@ -1,3 +1,5 @@
+import { ICharacterEntity } from "@entities/characters/ICharacter";
+
 export class NextDialogue {
-  constructor(public dialogues: string[], public currentIndex: number) { }
+  constructor(public character: ICharacterEntity, public currentIndex: number) { }
 }

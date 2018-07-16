@@ -1,4 +1,4 @@
-import { IEntity } from "../IEntity"
+import { IEntity } from "@entities/IEntity"
 import { StageComponent } from "@components/Stage/Stage";
 import { NameComponent } from "@components/name/Name";
 import { DescComponent } from "@components/desc/Desc";

@@ -1,5 +1,5 @@
-import { IEntity } from "../IEntity";
-import { MenuComponent } from "@components/Menu/Menu";
+import { IEntity } from "@entities/IEntity";
+import { MenuComponent } from "@components/menu/Menu";
 import { BehaviorComponent } from "@components/Behavior/Behavior";
 import { NameComponent } from "@components/name/Name";
 import { GameStart } from "@components/welcome/messages/GameStart";

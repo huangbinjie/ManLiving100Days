@@ -1,3 +1,5 @@
+import { ICharacterEntity } from "@entities/characters/ICharacter";
+
 export class StartDialogue {
-  constructor(public dialogues: string[]) { }
+  constructor(public character: ICharacterEntity) { }
 }

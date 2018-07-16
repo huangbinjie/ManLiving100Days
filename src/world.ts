@@ -1,10 +1,7 @@
 import { IEntity } from "@entities/IEntity";
 import { ActorSystem, AbstractActor } from "js-actor"
-import { DialogueSystem } from "@systems/dialogue/Dialogue";
-import { LogSystem } from "@systems/log/log";
-import { InputSystem } from "@systems/input/input";
-import { StageSystem } from "@systems/stage/Stage";
-import { WelcomeSystem } from "@systems/welcome/Welcome";
+import { IStageEntity } from "@entities/stages/IStage";
+import { IPlayerEntity } from "@entities/players/IPlayer";
 
 export class World {
   private entities: IEntity[] = []
@@ -14,8 +11,20 @@ export class World {
     this.entities.push(entity)
   }
 
+  public removeEntity(entity: IEntity) {
+    this.entities.splice(this.entities.indexOf(entity))
+  }
+
   public getEntities() {
     return this.entities
+  }
+
+  public getStage() {
+    return this.getEntities().find(entity => !!(entity as IStageEntity).stageComponent) as IStageEntity
+  }
+
+  public getPlayer() {
+    return this.getEntities().find(entity => !!(entity as IPlayerEntity).playerComponent) as IPlayerEntity
   }
 
   public addSystem(system: new (world: World) => AbstractActor, name = system.name) {

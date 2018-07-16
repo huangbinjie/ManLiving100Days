@@ -7,11 +7,14 @@ import { AttackComponent } from "@components/Attack/Attack";
 import { ICharacterEntity } from "@entities/characters/ICharacter";
 import { CharacterComponent } from "@components/character/character";
 import { DialogueComponent } from "@components/dialogue/Dialogue";
+import { BehaviorComponent } from "@components/Behavior/Behavior";
+import { IPlayerEntity } from "@entities/players/IPlayer";
 
-export class LiXiaoYao implements ICharacterEntity {
+export class LiXiaoYao implements IPlayerEntity {
   public playerComponent = new PlayerComponent()
   public characterComponent = new CharacterComponent()
   public nameComponent = new NameComponent("李逍遥")
   public attackComponent = new AttackComponent(100)
   public healthComponent = new HealthComponent(1000)
+  public behaviorComponent = new BehaviorComponent({})
 }

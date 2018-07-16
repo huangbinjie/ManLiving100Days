@@ -62,3 +62,10 @@ const Player = [new PlayerComponent, new MoveComponent, new AttactComponent]
 剧情介绍：https://zhidao.baidu.com/question/102465003.html
 剧情对话：https://tieba.baidu.com/p/4718152154?red_tag=2728916468
 
+## 总结
+
+场景怎么管理？
+
+Scene is only a visual representation (human view) of game world and it's only purpose to help human players interact with this world. If a game architecture is designed in such way, you can see as game world might live and update even without any views attached.
+
+场景是从人的角度思考的一种抽象，帮助人和游戏世界打交道很好理解。比如换地图看起来就像换场景。实际上只是批量操作实体而已，会删除一批，加载一批。

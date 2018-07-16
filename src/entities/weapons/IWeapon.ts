@@ -1,6 +1,6 @@
-import { IEntity } from "../IEntity";
-import { AttackComponent } from "../../components/Attack/Attack";
-import { BehaviorComponent } from "../../components/Behavior/Behavior";
+import { IEntity } from "@entities/IEntity";
+import { AttackComponent } from "@components/Attack/Attack";
+import { BehaviorComponent } from "@components/Behavior/Behavior";
 import { WeaponComponent } from "@components/weapon/Weapon";
 import { NameComponent } from "@components/name/Name";
 import { DescComponent } from "@components/desc/Desc";

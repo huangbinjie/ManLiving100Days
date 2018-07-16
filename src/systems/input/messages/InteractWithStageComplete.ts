@@ -2,10 +2,9 @@ import { IEntity } from "@entities/IEntity";
 import { IStageEntity } from "@entities/stages/IStage";
 import { IMenuEntity } from "@entities/menus/IMenu";
 
-export class WaitingInteractWithStage {
+export class InteractWithStageComplete {
   constructor(
-    public stage: IStageEntity,
     public item: IEntity,
-    public menus: IMenuEntity[]
+    public menu: IMenuEntity
   ) { }
 }
