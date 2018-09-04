@@ -1,13 +1,11 @@
-import { PlayerComponent } from "@components/player/Player"
-import { NameComponent } from "@components/name/Name"
-import { HealthComponent } from "@components/health/Health"
-import { EquipmentComponent } from "@components/equipment/Equipment"
-import { AttackComponent } from "@components/Attack/Attack"
 import { ICharacterEntity } from "@entities/characters/ICharacter";
-import { CharacterComponent } from "@components/character/character";
-import { BehaviorComponent } from "@components/Behavior/Behavior";
-import { DialogueComponent } from "@components/dialogue/Dialogue";
-import { BeginAttack } from "@components/attack/messages/BeginAttack";
+import { CharacterComponent } from "@components/character";
+import { NameComponent } from "@components/Name";
+import { AttackComponent } from "@components/Attack";
+import { HealthComponent } from "@components/Health";
+import { EquipmentComponent } from "@components/Equipment";
+import { DialogueComponent } from "@components/Dialogue";
+import { BehaviorComponent } from "@components/Behavior";
 
 /**
  * 罗刹鬼婆
@@ -19,11 +17,6 @@ export class LuoChaGuiPo implements ICharacterEntity {
   public healthComponent = new HealthComponent(100000)
   public equipmentComponent = new EquipmentComponent()
   public dialogueComponent = new DialogueComponent(dialogs)
-  public behaviorComponent: BehaviorComponent
-
-  constructor() {
-    this.behaviorComponent = new BehaviorComponent(new BeginAttack(this))
-  }
 }
 
 const dialogs = [

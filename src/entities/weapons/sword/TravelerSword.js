@@ -1,9 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var Attack_1 = require("@components/Attack/Attack");
-var Name_1 = require("@components/name/Name");
-var Desc_1 = require("@components/desc/Desc");
-var Weapon_1 = require("@components/weapon/Weapon");
+var Attack_1 = require("@components/Attack");
+var Name_1 = require("@components/Name");
+var Desc_1 = require("@components/Desc");
+var Weapon_1 = require("@components/Weapon");
 var TravelerSwordEntity = /** @class */ (function () {
     function TravelerSwordEntity() {
         this.weaponComponent = new Weapon_1.WeaponComponent();

@@ -1,7 +1,7 @@
 import { IEntity } from "@entities/IEntity";
-import { BehaviorComponent } from "@components/Behavior/Behavior";
-import { MenuComponent } from "@components/menu/Menu";
-import { NameComponent } from "@components/name/Name";
+import { BehaviorComponent } from "@components/Behavior";
+import { MenuComponent } from "@components/Menu";
+import { NameComponent } from "@components/Name";
 
 export interface IMenuEntity extends IEntity {
   menuComponent: MenuComponent

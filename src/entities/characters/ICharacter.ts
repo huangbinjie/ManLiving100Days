@@ -1,12 +1,12 @@
 import { IEntity } from "@entities/IEntity"
-import { NameComponent } from "@components/name/Name"
-import { HealthComponent } from "@components/health/Health"
-import { EquipmentComponent } from "@components/equipment/Equipment"
-import { AttackComponent } from "@components/Attack/Attack";
-import { CharacterComponent } from "@components/character/character";
-import { DialogueComponent } from "@components/dialogue/Dialogue";
-import { EnemyComponent } from "@components/enemy/enemy";
-import { BehaviorComponent } from "@components/Behavior/Behavior";
+import { NameComponent } from "@components/Name"
+import { HealthComponent } from "@components/Health"
+import { EquipmentComponent } from "@components/Equipment"
+import { AttackComponent } from "@components/Attack";
+import { CharacterComponent } from "@components/character";
+import { DialogueComponent } from "@components/Dialogue";
+import { EnemyComponent } from "@components/Enemy";
+import { BehaviorComponent } from "@components/Behavior";
 
 export interface ICharacterEntity extends IEntity {
   characterComponent: CharacterComponent

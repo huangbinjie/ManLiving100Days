@@ -1,6 +1,5 @@
 import { World } from "world";
 import { ConsoleSystem } from "@systems/console/Console";
-import { DialogueSystem } from "@systems/dialogue/Dialogue";
 import { StageSystem } from "@systems/stage/Stage";
 import { InputSystem } from "@systems/Input/Input";
 import { WelcomeSystem } from "@systems/welcome/Welcome";
@@ -9,11 +8,10 @@ import { LiXiaoYao } from "@entities/players/LiXiaoYao"
 
 const world = new World()
 
-world.addSystem(DialogueSystem)
 world.addSystem(ConsoleSystem)
 world.addSystem(InputSystem)
-world.addSystem(StageSystem)
+// world.addSystem(StageSystem)
 world.addSystem(WelcomeSystem)
 
-world.addEntity(new LiXiaoYao)
+// world.addEntity(new LiXiaoYao)
 world.broadcast(new Welcome())

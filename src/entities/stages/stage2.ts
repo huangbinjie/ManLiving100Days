@@ -1,10 +1,9 @@
-import { StageComponent } from "@components/Stage/Stage";
-import { BonusComponent } from "@components/Bonus/Bonus";
+import { StageComponent } from "@components/Stage";
+import { BonusComponent } from "@components/Bonus";
 import { TravelerSwordEntity } from "@entities/weapons/sword/TravelerSword";
-import { NameComponent } from "@components/name/Name";
-import { DescComponent } from "@components/desc/Desc";
+import { NameComponent } from "@components/Name";
+import { DescComponent } from "@components/Desc";
 import { IStageEntity } from "@entities/stages/IStage";
-import { WoodenChestEntity } from "@entities/chests";
 
 export class Stage2Entity implements IStageEntity {
   public nameComponent = new NameComponent("城堡")
@@ -12,8 +11,6 @@ export class Stage2Entity implements IStageEntity {
   public stageComponent: StageComponent
 
   constructor() {
-    const bonus = new BonusComponent(new TravelerSwordEntity)
-    const chest = new WoodenChestEntity(bonus)
-    this.stageComponent = new StageComponent([chest])
+    this.stageComponent = new StageComponent([])
   }
 }

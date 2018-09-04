@@ -1,7 +1,7 @@
-import { NameComponent } from "@components/name/Name"
+import { NameComponent } from "@components/Name"
 import { ICharacterEntity } from "@entities/characters/ICharacter";
-import { CharacterComponent } from "@components/character/character";
-import { DialogueComponent } from "@components/dialogue/Dialogue";
+import { CharacterComponent } from "@components/character";
+import { DialogueComponent } from "@components/Dialogue";
 
 /**
  * 第0幕 - 土怪

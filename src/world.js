@@ -9,8 +9,17 @@ var World = /** @class */ (function () {
     World.prototype.addEntity = function (entity) {
         this.entities.push(entity);
     };
+    World.prototype.removeEntity = function (entity) {
+        this.entities.splice(this.entities.indexOf(entity));
+    };
     World.prototype.getEntities = function () {
         return this.entities;
+    };
+    World.prototype.getStage = function () {
+        return this.getEntities().find(function (entity) { return !!entity.stageComponent; });
+    };
+    World.prototype.getPlayer = function () {
+        return this.getEntities().find(function (entity) { return !!entity.playerComponent; });
     };
     World.prototype.addSystem = function (system, name) {
         if (name === void 0) { name = system.name; }

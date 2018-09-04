@@ -32,6 +32,6 @@ export class World {
   }
 
   public broadcast(message: object) {
-    this.systemSystem.eventStream.emit("*", message)
+    this.systemSystem.eventStream.emit("**", message)
   }
 }

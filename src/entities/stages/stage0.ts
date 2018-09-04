@@ -1,10 +1,9 @@
 
-import { StageComponent } from "@components/Stage/Stage";
-import { NameComponent } from "@components/name/Name";
-import { DescComponent } from "@components/desc/Desc";
+import { StageComponent } from "@components/Stage";
+import { NameComponent } from "@components/Name";
+import { DescComponent } from "@components/Desc";
 import { IStageEntity } from "@entities/stages/IStage";
 import { TuGuai } from "@entities/characters/stage0/ToGuai";
-import { Stage1Entity } from "@entities/stages/stage1";
 import { LuoChaGuiPo } from "@entities/characters/stage0/LuoChaGuiPo";
 
 /**

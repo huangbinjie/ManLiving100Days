@@ -1,9 +1,9 @@
 import { IEntity } from "@entities/IEntity";
-import { AttackComponent } from "@components/Attack/Attack";
-import { BehaviorComponent } from "@components/Behavior/Behavior";
-import { WeaponComponent } from "@components/weapon/Weapon";
-import { NameComponent } from "@components/name/Name";
-import { DescComponent } from "@components/desc/Desc";
+import { AttackComponent } from "@components/Attack";
+import { BehaviorComponent } from "@components/Behavior";
+import { WeaponComponent } from "@components/Weapon";
+import { NameComponent } from "@components/Name";
+import { DescComponent } from "@components/Desc";
 
 export interface IWeaponEntity extends IEntity {
   weaponComponent: WeaponComponent
