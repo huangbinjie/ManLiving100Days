@@ -6,25 +6,25 @@ import { World } from "world";
 import { DescribeMenus } from "@systems/console/messages/DescribeMenus";
 import { InputSystem } from "@systems/Input/Input";
 import { WaitingInput } from "@systems/input/messages/WaitingInput";
+import { ConsoleSystem } from "@systems/console/Console";
 
 export class WelcomeSystem extends AbstractActor {
-  private inputRef!: ActorRef<InputSystem>
-  constructor(private world: World) {
+  constructor(
+    private world: World,
+    private inputRef: ActorRef<InputSystem>,
+    private consoleRef: ActorRef<ConsoleSystem>
+  ) {
     super()
-  }
-  public preStart() {
-    this.inputRef = this.context.system.get(InputSystem)!
   }
   protected createReceive() {
     return this.receiveBuilder()
-      .match(Welcome, () => {
+      .match(Welcome, async () => {
         const menus = [new GameStartMenuEntity()]
-        this.world.broadcast(new DescribeMenus(menus))
-        this.inputRef.ask(new WaitingInput(menus)).then((index: number) => {
-          if (menus[index].nameComponent.value === "开始游戏") {
-            this.world.broadcast(new GameStart())
-          }
-        })
+        this.consoleRef.tell(new DescribeMenus(menus))
+        const index = await this.inputRef.ask(new WaitingInput())
+        if (menus[index].nameComponent.value === "开始游戏") {
+          this.world.broadcast(new GameStart())
+        }
       })
       .build()
   }

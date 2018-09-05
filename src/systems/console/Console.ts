@@ -6,6 +6,8 @@ import { DescribeMenus } from "@systems/console/messages/DescribeMenus";
 import { Welcome } from "@systems/welcome/messages/Welcome";
 import { GameStart } from "@systems/welcome/messages/GameStart";
 import { DescribeStage } from "@systems/console/messages/DescribeStage";
+import { ICharacterEntity } from "@entities/characters/ICharacter";
+import { IStageEntity } from "@entities/stages/IStage";
 
 export class ConsoleSystem extends AbstractActor {
   constructor(private world: World) {
@@ -17,6 +19,7 @@ export class ConsoleSystem extends AbstractActor {
         console.info("欢迎来到仙剑奇侠传 beta. \n")
       })
       .match(GameStart, () => {
+        console.clear()
         console.info("游玩愉快. \n")
       })
       .match(DescribeMenus, ({ menus }) => {

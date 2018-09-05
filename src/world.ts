@@ -1,5 +1,5 @@
 import { IEntity } from "@entities/IEntity";
-import { ActorSystem, AbstractActor } from "js-actor"
+import { ActorSystem, AbstractActor, ActorRef } from "js-actor"
 import { IStageEntity } from "@entities/stages/IStage";
 import { IPlayerEntity } from "@entities/players/IPlayer";
 
@@ -27,8 +27,8 @@ export class World {
     return this.getEntities().find(entity => !!(entity as IPlayerEntity).playerComponent) as IPlayerEntity
   }
 
-  public addSystem(system: new (world: World) => AbstractActor, name = system.name) {
-    this.systemSystem.actorOf(new system(this), name)
+  public addSystem<T extends AbstractActor>(system: T) {
+    return this.systemSystem.actorOf(system) as ActorRef<T>
   }
 
   public broadcast(message: object) {
