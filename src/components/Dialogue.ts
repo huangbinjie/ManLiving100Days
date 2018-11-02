@@ -1,3 +1,5 @@
 export class DialogueComponent {
-  constructor(public dialogues: string[]) { }
+  constructor(public dialogues: Dialogue[]) { }
 }
+
+export type Dialogue = string

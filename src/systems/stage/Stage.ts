@@ -16,13 +16,16 @@ import { DialogueMenuEntity } from "@entities/menus/Dialogue";
 import { AttackMenuEntity } from "@entities/menus/Attack";
 import { IntoMenuEntity } from "@entities/menus/Into";
 import { BackMenuEntity } from "@entities/menus/Back";
-import { resolve } from "url";
+import { DialogueSystem } from "systems/dialogue/Dialogue";
+import { StartDialogue } from "systems/dialogue/messages/StartDialogue";
+import { isCharacter } from "utils/is";
 
 export class StageSystem extends AbstractActor {
   constructor(
     private world: World,
     private inputRef: ActorRef<InputSystem>,
     private consoleRef: ActorRef<ConsoleSystem>,
+    private dialogueRef: ActorRef<DialogueSystem>,
     private interactionRef: ActorRef<InteractionSystem>
   ) {
     super()
@@ -31,7 +34,7 @@ export class StageSystem extends AbstractActor {
     return this.receiveBuilder()
       .match(GameStart, async () => {
         const stage0 = new Stage0Entity()
-        this.getSelf().tell(new ChangeStage(stage0))
+        this.world.broadcast(new ChangeStage(stage0))
       })
       .match(ChangeStage, async ({ stage }) => {
         this.consoleRef.tell(new DescribeStage(stage))
@@ -39,7 +42,12 @@ export class StageSystem extends AbstractActor {
         const selected = stage.stageComponent.items[index]
         const selectedMenu = await this.interactionRef.ask<IMenuEntity>(new With(selected))
         switch (true) {
-          case selectedMenu instanceof DialogueMenuEntity:
+          case selectedMenu instanceof DialogueMenuEntity: {
+            if (isCharacter(selected)) {
+              this.dialogueRef.tell(new StartDialogue(selected.dialogueComponent!.dialogues))
+            }
+            break;
+          }
           case selectedMenu instanceof AttackMenuEntity:
           case selectedMenu instanceof IntoMenuEntity:
           case selectedMenu instanceof BackMenuEntity:
