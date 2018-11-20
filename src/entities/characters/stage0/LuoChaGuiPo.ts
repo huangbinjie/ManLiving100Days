@@ -6,12 +6,14 @@ import { HealthComponent } from "@components/Health";
 import { EquipmentComponent } from "@components/Equipment";
 import { DialogueComponent } from "@components/Dialogue";
 import { BehaviorComponent } from "@components/Behavior";
+import { EnemyComponent } from "components/Enemy";
 
 /**
  * 罗刹鬼婆
  */
 export class LuoChaGuiPo implements ICharacterEntity {
   public characterComponent = new CharacterComponent()
+  public enemyComponent = new EnemyComponent()
   public nameComponent = new NameComponent("罗刹鬼婆")
   public attackComponent = new AttackComponent(50)
   public healthComponent = new HealthComponent(100000)

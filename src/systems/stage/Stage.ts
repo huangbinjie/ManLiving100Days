@@ -44,7 +44,8 @@ export class StageSystem extends AbstractActor {
         switch (true) {
           case selectedMenu instanceof DialogueMenuEntity: {
             if (isCharacter(selected)) {
-              this.dialogueRef.tell(new StartDialogue(selected.dialogueComponent!.dialogues))
+              await this.dialogueRef.ask(new StartDialogue(selected.dialogueComponent!.dialogues))
+              this.getSelf().tell(new ChangeStage(stage))
             }
             break;
           }

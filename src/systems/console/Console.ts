@@ -9,6 +9,7 @@ import { DescribeStage } from "@systems/console/messages/DescribeStage";
 import { ICharacterEntity } from "@entities/characters/ICharacter";
 import { IStageEntity } from "@entities/stages/IStage";
 import { DescribeDialogue } from "./messages/DescribeDialogue";
+import { DescribeBattle } from "./messages/DescribeBattle";
 
 export class ConsoleSystem extends AbstractActor {
   constructor(private world: World) {
@@ -23,7 +24,11 @@ export class ConsoleSystem extends AbstractActor {
         console.clear()
         console.info("游玩愉快. \n")
       })
+      .match(DescribeBattle, () => {
+          info("")
+      })
       .match(DescribeDialogue, ({ dialogue }) => {
+        console.clear()
         console.log(dialogue)
       })
       .match(DescribeMenus, ({ menus }) => {

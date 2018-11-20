@@ -3,7 +3,7 @@ import { StartDialogue } from "./messages/StartDialogue";
 import { ConsoleSystem } from "systems/console/Console";
 import { DescribeDialogue } from "systems/console/messages/DescribeDialogue";
 import { InputSystem } from "systems/Input/Input";
-import { WaitingInput } from "systems/input/messages/WaitingInput";
+import { WaitingEnter } from "systems/input/messages/WaitingEnter";
 
 export class DialogueSystem extends AbstractActor {
   constructor(
@@ -14,11 +14,12 @@ export class DialogueSystem extends AbstractActor {
   }
   protected createReceive() {
     return this.receiveBuilder()
-      .match(StartDialogue, async ({ dialogues }) => {
+      .answer(StartDialogue, resolve => async ({ dialogues }) => {
         for (let dialogue of dialogues) {
           this.consoleRef.tell(new DescribeDialogue(dialogue))
-          const index = await this.inputRef.ask(new WaitingInput())
+          const index = await this.inputRef.ask(new WaitingEnter())
         }
+        resolve()
       })
       .build()
   }
