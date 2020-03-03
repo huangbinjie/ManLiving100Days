@@ -13,8 +13,8 @@ export interface IPlayerEntity extends IEntity {
   nameComponent: NameComponent
   enemyComponent?: EnemyComponent
   attackComponent: AttackComponent
-  healthComponent?: HealthComponent
+  healthComponent: HealthComponent
   equipmentComponent?: EquipmentComponent
   dialogueComponent?: DialogueComponent
-  behaviorComponent?: BehaviorComponent
+  behaviorComponent: BehaviorComponent
 }

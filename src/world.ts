@@ -2,6 +2,7 @@ import { IEntity } from "@entities/IEntity";
 import { ActorSystem, AbstractActor, ActorRef } from "js-actor"
 import { IStageEntity } from "@entities/stages/IStage";
 import { IPlayerEntity } from "@entities/players/IPlayer";
+import { ICharacterEntity } from "@entities/characters/ICharacter";
 
 export class World {
   private entities: IEntity[] = []
@@ -19,12 +20,12 @@ export class World {
     return this.entities
   }
 
-  public getStage() {
-    return this.getEntities().find(entity => !!(entity as IStageEntity).stageComponent) as IStageEntity
-  }
-
   public getPlayer() {
     return this.getEntities().find(entity => !!(entity as IPlayerEntity).playerComponent) as IPlayerEntity
+  }
+
+  public getEnemy() {
+    return this.getEntities().find(entity => !!(entity as ICharacterEntity).enemyComponent) as ICharacterEntity
   }
 
   public addSystem<T extends AbstractActor>(system: T) {

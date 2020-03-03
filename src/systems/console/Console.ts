@@ -8,6 +8,8 @@ import { GameStart } from "@systems/welcome/messages/GameStart";
 import { DescribeStage } from "@systems/console/messages/DescribeStage";
 import { ICharacterEntity } from "@entities/characters/ICharacter";
 import { IStageEntity } from "@entities/stages/IStage";
+import { DescribeDialogue } from "@systems/console/messages/DescribeDialogue";
+import { DescribeInfo } from "@systems/console/messages/DescribeInfo";
 
 export class ConsoleSystem extends AbstractActor {
   constructor(private world: World) {
@@ -19,17 +21,20 @@ export class ConsoleSystem extends AbstractActor {
         console.info("欢迎来到仙剑奇侠传 beta. \n")
       })
       .match(GameStart, () => {
-        console.clear()
         console.info("游玩愉快. \n")
       })
       .match(DescribeMenus, ({ menus }) => {
-        console.clear()
         const str = menus.map((menu, index) => ++index + "、" + menu.nameComponent.value).join("\n")
         info(str)
       })
       .match(DescribeStage, ({ stage }) => {
-        console.clear()
         const str = `地点：${stage.nameComponent.value}\n描述：${stage.descComponent.value}\n这有：${getItemName(stage.stageComponent.items).join(",")}`
+        info(str)
+      })
+      .match(DescribeDialogue, ({ dialogue }) => {
+        info(dialogue)
+      })
+      .match(DescribeInfo, ({ info: str }) => {
         info(str)
       })
       .build()

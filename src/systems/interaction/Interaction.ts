@@ -4,12 +4,12 @@ import { With } from "@systems/interaction/messages/with";
 import { InputSystem } from "@systems/Input/Input";
 import { ConsoleSystem } from "@systems/console/Console";
 import { WaitingInput } from "@systems/input/messages/WaitingInput";
-import { DialogueMenuEntity } from "@entities/menus/Dialogue";
-import { BackMenuEntity } from "@entities/menus/Back";
+import { DialogueMenuEntity } from "@entities/menus/interaction/Dialogue";
+import { BackMenuEntity } from "@entities/menus/interaction/Back";
 import { isCharacter, isStage } from "utils/is";
-import { AttackMenuEntity } from "@entities/menus/Attack";
 import { DescribeMenus } from "@systems/console/messages/DescribeMenus";
-import { IntoMenuEntity } from "@entities/menus/Into";
+import { IntoMenuEntity } from "@entities/menus/interaction/Into";
+import { AttackMenuEntity } from "@entities/menus/interaction/Attack";
 
 export class InteractionSystem extends AbstractActor {
   constructor(

@@ -12,18 +12,24 @@ import { ChangeStage } from "@systems/stage/messages/ChangeStage";
 import { InteractionSystem } from "@systems/interaction/Interaction";
 import { With } from "@systems/interaction/messages/with";
 import { IMenuEntity } from "@entities/menus/IMenu";
-import { DialogueMenuEntity } from "@entities/menus/Dialogue";
-import { AttackMenuEntity } from "@entities/menus/Attack";
-import { IntoMenuEntity } from "@entities/menus/Into";
-import { BackMenuEntity } from "@entities/menus/Back";
-import { resolve } from "url";
+import { DialogueMenuEntity } from "@entities/menus/interaction/Dialogue";
+import { AttackMenuEntity } from "@entities/menus/interaction/Attack";
+import { IntoMenuEntity } from "@entities/menus/interaction/Into";
+import { BackMenuEntity } from "@entities/menus/interaction/Back";
+import { DialogueSystem } from "@systems/dialogue/Dialogue";
+import { DescribeDialogue } from "@systems/console/messages/DescribeDialogue";
+import { WaitingEnter } from "@systems/input/messages/WaitingEnter";
+import { BattleSystem } from "@systems/attack/Battle";
+import { BeginBattle } from "@systems/attack/messages/BeginBattle";
 
 export class StageSystem extends AbstractActor {
   constructor(
     private world: World,
     private inputRef: ActorRef<InputSystem>,
     private consoleRef: ActorRef<ConsoleSystem>,
-    private interactionRef: ActorRef<InteractionSystem>
+    private dialogueRef: ActorRef<DialogueSystem>,
+    private interactionRef: ActorRef<InteractionSystem>,
+    private battleRef: ActorRef<BattleSystem>
   ) {
     super()
   }
@@ -39,11 +45,25 @@ export class StageSystem extends AbstractActor {
         const selected = stage.stageComponent.items[index]
         const selectedMenu = await this.interactionRef.ask<IMenuEntity>(new With(selected))
         switch (true) {
+          // 对话
           case selectedMenu instanceof DialogueMenuEntity:
+            const dialogues = (selected as ICharacterEntity).dialogueComponent!.dialogues
+            for (const dialogue of dialogues) {
+              this.consoleRef.tell(new DescribeDialogue(dialogue))
+              await this.inputRef.ask(new WaitingEnter())
+            }
+            this.getSelf().tell(new ChangeStage(stage))
+            break
           case selectedMenu instanceof AttackMenuEntity:
+            this.battleRef.tell(new BeginBattle)
+            break
           case selectedMenu instanceof IntoMenuEntity:
+            this.getSelf().tell(new ChangeStage(selected as IStageEntity))
+            break
+          // 返回
           case selectedMenu instanceof BackMenuEntity:
             this.getSelf().tell(new ChangeStage(stage))
+            break
         }
       })
       .build()

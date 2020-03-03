@@ -1,4 +1,3 @@
-"use strict";
 // import { PlayerComponent } from "@components/player/Player";
 // import { NameComponent } from "@components/name/Name";
 // import { HealthComponent } from "@components/health/Health";
