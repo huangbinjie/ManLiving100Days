@@ -1,5 +1,5 @@
-import { IMenuEntity } from "@entities/menus/IMenu";
+import { IStageEntity } from "@entities/stages/IStage";
 
 export class DescribeBattle {
-  constructor(menus: IMenuEntity[]) { }
+  constructor() { }
 }

@@ -1,5 +1,5 @@
-import { IMenuEntity } from "@entities/menus/IMenu";
+import { Dialogue } from "components/Dialogue";
 
 export class DescribeDialogue {
-  constructor(public dialogue: string) { }
+  constructor(public dialogue: Dialogue) { }
 }

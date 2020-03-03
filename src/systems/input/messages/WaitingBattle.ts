@@ -1,5 +1,5 @@
 import { IEntity } from "@entities/IEntity";
 
-export class WaitingEnter {
+export class WaitingBattle {
   constructor() { }
 }

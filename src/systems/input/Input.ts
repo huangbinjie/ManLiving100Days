@@ -4,6 +4,7 @@ import * as readline from "readline"
 import { World } from "world";
 import { WaitingInput } from "@systems/input/messages/WaitingInput";
 import { WaitingEnter } from "@systems/input/messages/WaitingEnter";
+import { WaitingBattle } from "./messages/WaitingBattle";
 
 export class InputSystem extends AbstractActor {
   constructor(private world: World) {
@@ -33,6 +34,20 @@ export class InputSystem extends AbstractActor {
             const result = await this.getSelf().ask(new WaitingInput)
             resolve(result)
           }
+        })
+      })
+      .answer(WaitingEnter, resolve => () => {
+        const rl = createInterface()
+        rl.question("\n按回车继续\n\n", answer => {
+          rl.close()
+          resolve(+answer - 1)
+        })
+      })
+      .answer(WaitingBattle, resolve => () => {
+        const rl = createInterface()
+        rl.question("\n接下来要怎么做\n\n", answer => {
+          rl.close()
+          resolve(+answer - 1)
         })
       })
       .build()

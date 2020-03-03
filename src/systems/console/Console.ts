@@ -8,8 +8,8 @@ import { GameStart } from "@systems/welcome/messages/GameStart";
 import { DescribeStage } from "@systems/console/messages/DescribeStage";
 import { ICharacterEntity } from "@entities/characters/ICharacter";
 import { IStageEntity } from "@entities/stages/IStage";
-import { DescribeDialogue } from "@systems/console/messages/DescribeDialogue";
-import { DescribeInfo } from "@systems/console/messages/DescribeInfo";
+import { DescribeDialogue } from "./messages/DescribeDialogue";
+import { DescribeBattle } from "./messages/DescribeBattle";
 
 export class ConsoleSystem extends AbstractActor {
   constructor(private world: World) {
@@ -22,6 +22,13 @@ export class ConsoleSystem extends AbstractActor {
       })
       .match(GameStart, () => {
         console.info("游玩愉快. \n")
+      })
+      .match(DescribeBattle, () => {
+          info("")
+      })
+      .match(DescribeDialogue, ({ dialogue }) => {
+        console.clear()
+        console.log(dialogue)
       })
       .match(DescribeMenus, ({ menus }) => {
         const str = menus.map((menu, index) => ++index + "、" + menu.nameComponent.value).join("\n")
