@@ -1,26 +1,23 @@
 {
   "compilerOptions": {
     "strict": true,
-    "baseUrl": "./src",
+    "module": "commonjs",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    // "baseUrl": "./src",
     "target": "es5",
     "outDir": "build",
     "lib": [
       "dom",
       "es2015"
     ],
-    "paths": {
-      "*": [
-        "*"
-      ],
-      "@components/*": [
-        "components/*"
-      ],
-      "@systems/*": [
-        "systems/*"
-      ],
-      "@entities/*": [
-        "entities/*"
-      ]
-    }
+    // "paths": {
+    //   "@engine/*": [
+    //     "engine/*"
+    //   ],
+    //   "@game/*": [
+    //     "game/*"
+    //   ]
+    // }
   }
 }

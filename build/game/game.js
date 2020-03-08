@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var world_1 = require("./world");
+var welcome_1 = require("./stages/welcome/welcome");
+var game_1 = require("../engine/game");
+var manager_1 = require("../engine/stage/manager");
+var world = new world_1.World();
+var game = new game_1.Game({ world: world });
+manager_1.StageManager.of(world).to(new welcome_1.WelcomeStage());
+game.run();

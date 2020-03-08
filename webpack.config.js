@@ -1,33 +1,24 @@
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 const path = require('path')
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 
 module.exports = {
-  mode: 'development',
-  devtool: 'cheap-module-eval-source-map',
-  entry: './src/game.ts',
+  entry: "./src/game/game.ts",
   output: {
-    filename: 'game.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'main.js',
+    path: path.resolve(__dirname, 'dist'),
   },
   module: {
     rules: [
-      { test: /\.tsx?$/, loader: 'ts-loader' }
-    ]
+      {
+        test: /\.tsx?$/,
+        use: 'ts-loader',
+        exclude: /node_modules/,
+      },
+    ],
   },
   resolve: {
-    extensions: ['.webpack.js', '.tsx', '.ts', '.js'],
-    modules: [
-      path.join(__dirname, "."),
-      path.join(__dirname, "node_modules/")
-    ],
-    plugins: [new TsconfigPathsPlugin({ /*configFile: "./path/to/tsconfig.json" */ })]
+    extensions: [ '.tsx', '.ts', '.js' ],
+    plugins: [new TsconfigPathsPlugin({})]
   },
-  resolveLoader: {
-    modules: [
-      path.join(__dirname, "node_modules/")
-    ]
-  },
-  // plugins: [
-  //   new TsConfigPathsPlugin()
-  // ]
+  target: 'node'
 }

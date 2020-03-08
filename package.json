@@ -6,23 +6,20 @@
   "scripts": {
     "build_js": "tsc",
     "build_js_watch": "tsc --watch",
-    "bundle": "parcel watch src/game.js --target=node",
-    "start": "webpack --target node --watch",
-    "webpack": "webpack --target node",
+    "start_game": "node build/game/game.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "js-actor": "^1.3.2"
+    "@types/node-emoji": "^1.8.1",
+    "js-actor": "^1.3.2",
+    "node-emoji": "^1.10.0",
+    "terminal-kit": "^1.34.0"
   },
   "devDependencies": {
-    "@types/node": "^10.5.1",
-    "ts-loader": "^4.4.2",
-    "tsconfig-paths-webpack-plugin": "^3.2.0",
-    "typescript": "^2.9.2",
-    "webpack": "^4.15.1",
-    "webpack-cli": "^3.0.8"
+    "@types/node": "^13.9.0",
+    "@types/terminal-kit": "^1.28.0"
   }
 }
