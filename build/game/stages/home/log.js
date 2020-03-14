@@ -49,36 +49,52 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var home_1 = require("../home");
-var manager_1 = require("../../../engine/stage/manager");
 var stage_1 = require("../stage");
-var world_1 = require("../../world");
-var LoadingStage = /** @class */ (function (_super) {
-    __extends(LoadingStage, _super);
-    function LoadingStage() {
-        return _super !== null && _super.apply(this, arguments) || this;
+var manager_1 = require("../../../engine/stage/manager");
+var errors_1 = require("../../utils/errors");
+var LogStage = /** @class */ (function (_super) {
+    __extends(LogStage, _super);
+    function LogStage() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.currentDay = 0;
+        return _this;
     }
-    LoadingStage.prototype.preStart = function () {
-        _super.prototype.preStart.call(this);
-        this.renderMain();
-    };
-    LoadingStage.prototype.renderMain = function () {
+    LogStage.prototype.preStart = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var log, menus, selected;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.renderer.writeTitle('又活了一天');
-                        this.renderer.writeLine("\u76EE\u524D\u5B58\u6D3B\u5929\u6570: " + ++this.world.liveDays);
-                        return [4 /*yield*/, this.renderer.writeMenus(['继续'], 'column')];
+                        _super.prototype.preStart.call(this);
+                        this.currentDay = this.world.liveDays;
+                        this.world.renderer.writeTitle("日志");
+                        this.world.renderer.writeLine("\u7B2C" + this.world.liveDays + "\u5929");
+                        log = this.world.logs[this.world.liveDays];
+                        this.world.renderer.writeLine(log);
+                        menus = ['返回'];
+                        if (this.currentDay > 0) {
+                            menus.push('前一天');
+                        }
+                        if (this.currentDay < this.world.liveDays) {
+                            menus.push('下一天');
+                        }
+                        return [4 /*yield*/, this.world.renderer.writeMenus(menus, 'row')];
                     case 1:
-                        _a.sent();
-                        this.world.broadcast(new world_1.WorldNextDay());
-                        manager_1.StageManager.of(this.world).replace(new home_1.HomeStage());
+                        selected = _a.sent();
+                        if (selected === 0) {
+                            manager_1.StageManager.back();
+                        }
+                        if (selected === 1) {
+                            throw errors_1.UnimplementedError('前一天');
+                        }
+                        if (selected === 2) {
+                            throw errors_1.UnimplementedError('下一天');
+                        }
                         return [2 /*return*/];
                 }
             });
         });
     };
-    return LoadingStage;
+    return LogStage;
 }(stage_1.Stage));
-exports.LoadingStage = LoadingStage;
+exports.LogStage = LogStage;

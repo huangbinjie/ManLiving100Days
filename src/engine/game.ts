@@ -1,26 +1,23 @@
-import { AbstractRenderer, DefaultRenderer } from "./renderer";
 import { Updater } from "./updater";
 import { StageManager } from "./stage/manager";
 import { AbstractWorld } from "./world";
 
 export type GameOptions = {
   world: AbstractWorld
-  renderer?: AbstractRenderer
+  updater?: Updater
 }
 
 export class Game {
   private updater = new Updater()
   private world!: AbstractWorld
 
-  public renderer: AbstractRenderer = new DefaultRenderer()
-
   constructor(options: GameOptions) {
-    if (options.renderer) {
-      this.renderer = options.renderer
-    }
-
     if (options.world) {
       this.world = options.world
+    }
+
+    if (options.updater) {
+      this.updater = options.updater
     }
   }
 

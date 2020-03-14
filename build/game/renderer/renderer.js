@@ -42,6 +42,24 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var terminal_kit_1 = __importDefault(require("terminal-kit"));
 var readline_1 = __importDefault(require("readline"));
 var types_1 = require("./types");
+var AbstractRenderer = /** @class */ (function () {
+    function AbstractRenderer() {
+    }
+    return AbstractRenderer;
+}());
+exports.AbstractRenderer = AbstractRenderer;
+var DefaultRenderer = /** @class */ (function () {
+    function DefaultRenderer() {
+    }
+    DefaultRenderer.prototype.write = function (obj) {
+        throw new Error("Method not implemented.");
+    };
+    DefaultRenderer.prototype.read = function (question) {
+        throw new Error("Method not implemented.");
+    };
+    return DefaultRenderer;
+}());
+exports.DefaultRenderer = DefaultRenderer;
 var Renderer = /** @class */ (function () {
     function Renderer() {
         this._term = terminal_kit_1.default.terminal;

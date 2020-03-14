@@ -14,7 +14,7 @@ var __extends = (this && this.__extends) || (function () {
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
 var renderer_1 = require("./renderer/renderer");
-var Player_1 = require("./ecs/entities/Player");
+var Player_1 = require("./ecs/entities/people/Player");
 var world_1 = require("../engine/world");
 var World = /** @class */ (function (_super) {
     __extends(World, _super);
@@ -24,6 +24,7 @@ var World = /** @class */ (function (_super) {
         _this.player = new Player_1.PlayerEntity();
         // 存活天数
         _this.liveDays = 0;
+        _this.logs = ['你开始了新的生活.'];
         World.instance = _this;
         return _this;
     }

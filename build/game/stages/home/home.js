@@ -54,8 +54,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var node_emoji_1 = __importDefault(require("node-emoji"));
 var world_1 = require("../../world");
-var renderer_1 = require("../../renderer/renderer");
-var abstract_stage_1 = require("../../../engine/stage/abstract_stage");
+var stage_1 = require("../stage");
+var manager_1 = require("../../../engine/stage/manager");
+var loading_1 = require("../loading/loading");
 var HomeStage = /** @class */ (function (_super) {
     __extends(HomeStage, _super);
     function HomeStage() {
@@ -67,14 +68,15 @@ var HomeStage = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        renderer_1.renderer.clear();
-                        renderer_1.renderer.writeTitle('家中');
+                        this.renderer.clear();
+                        this.renderer.writeTitle('家中');
                         foods = Array(5).fill(node_emoji_1.default.get('rice')).join(' ');
-                        renderer_1.renderer.writeLine("\u98DF\u7269(" + 5 + "): " + foods, 'cyan');
+                        this.renderer.writeLine("\u98DF\u7269(" + 5 + "): " + foods, 'cyan');
                         waters = Array(5).fill(node_emoji_1.default.get('droplet')).join(' ');
-                        renderer_1.renderer.writeLine("\u6C34(" + 5 + "): " + waters, 'cyan');
-                        renderer_1.renderer.writeLine('\n');
-                        renderer_1.renderer.writeLine('现在要做什么呢?');
+                        this.renderer.writeLine("\u6C34(" + 5 + "): " + waters, 'cyan');
+                        this.renderer.writeLine('\n');
+                        this.renderer.writeLine('现在要做什么呢?');
+                        this.renderer.writeLine('\n');
                         menus = [
                             '出门',
                             '查看状态',
@@ -82,7 +84,7 @@ var HomeStage = /** @class */ (function (_super) {
                             '睡觉',
                             '说话'
                         ];
-                        return [4 /*yield*/, renderer_1.renderer.writeMenus(menus, 'column')];
+                        return [4 /*yield*/, this.renderer.writeMenus(menus, 'column')];
                     case 1:
                         selected = _a.sent();
                         if (selected === 0) {
@@ -92,7 +94,7 @@ var HomeStage = /** @class */ (function (_super) {
                         }
                         // 睡觉
                         if (selected === 3) {
-                            world_1.World.instance.broadcast(new world_1.WorldNextDay());
+                            manager_1.StageManager.of(this.world).replace(new loading_1.LoadingStage());
                         }
                         return [2 /*return*/];
                 }
@@ -106,14 +108,14 @@ var HomeStage = /** @class */ (function (_super) {
                 switch (_a.label) {
                     case 0:
                         player = world_1.World.instance.player;
-                        renderer_1.renderer.clear();
-                        renderer_1.renderer.writeTitle('状态');
-                        renderer_1.renderer.writeLine("\u9971\u98DF\u5EA6: " + player.repletion.toString());
-                        renderer_1.renderer.writeLine("\u6E34\u5EA6: " + player.thirst.toString());
+                        this.renderer.clear();
+                        this.renderer.writeTitle('状态');
+                        this.renderer.writeLine("\u9971\u98DF\u5EA6: " + player.repletion.toString());
+                        this.renderer.writeLine("\u6E34\u5EA6: " + player.thirst.toString());
                         menus = [
                             '返回'
                         ];
-                        return [4 /*yield*/, renderer_1.renderer.writeMenus(menus, 'row')];
+                        return [4 /*yield*/, this.renderer.writeMenus(menus, 'row')];
                     case 1:
                         selected = _a.sent();
                         if (selected === 0) {
@@ -125,8 +127,9 @@ var HomeStage = /** @class */ (function (_super) {
         });
     };
     HomeStage.prototype.preStart = function () {
+        _super.prototype.preStart.call(this);
         this.renderMain();
     };
     return HomeStage;
-}(abstract_stage_1.AbstractStage));
+}(stage_1.Stage));
 exports.HomeStage = HomeStage;

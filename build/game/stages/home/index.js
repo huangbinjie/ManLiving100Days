@@ -48,37 +48,91 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var home_1 = require("../home");
-var manager_1 = require("../../../engine/stage/manager");
-var stage_1 = require("../stage");
+var node_emoji_1 = __importDefault(require("node-emoji"));
 var world_1 = require("../../world");
-var LoadingStage = /** @class */ (function (_super) {
-    __extends(LoadingStage, _super);
-    function LoadingStage() {
+var stage_1 = require("../stage");
+var manager_1 = require("../../../engine/stage/manager");
+var loading_1 = require("../loading");
+var log_1 = require("./log");
+var HomeStage = /** @class */ (function (_super) {
+    __extends(HomeStage, _super);
+    function HomeStage() {
         return _super !== null && _super.apply(this, arguments) || this;
     }
-    LoadingStage.prototype.preStart = function () {
-        _super.prototype.preStart.call(this);
-        this.renderMain();
-    };
-    LoadingStage.prototype.renderMain = function () {
+    HomeStage.prototype.renderMain = function () {
         return __awaiter(this, void 0, void 0, function () {
+            var foods, waters, menus, selected;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        this.renderer.writeTitle('又活了一天');
-                        this.renderer.writeLine("\u76EE\u524D\u5B58\u6D3B\u5929\u6570: " + ++this.world.liveDays);
-                        return [4 /*yield*/, this.renderer.writeMenus(['继续'], 'column')];
+                        this.renderer.writeTitle('家中');
+                        foods = Array(5).fill(node_emoji_1.default.get('rice')).join(' ');
+                        this.renderer.writeLine("\u98DF\u7269(" + 5 + "): " + foods, 'cyan');
+                        waters = Array(5).fill(node_emoji_1.default.get('droplet')).join(' ');
+                        this.renderer.writeLine("\u6C34(" + 5 + "): " + waters, 'cyan');
+                        this.renderer.writeLine('\n');
+                        this.renderer.writeLine('现在要做什么呢?');
+                        this.renderer.writeLine('\n');
+                        menus = [
+                            '出门',
+                            '查看状态',
+                            '查看日志',
+                            '睡觉',
+                            '说话'
+                        ];
+                        return [4 /*yield*/, this.renderer.writeMenus(menus, 'row')];
                     case 1:
-                        _a.sent();
-                        this.world.broadcast(new world_1.WorldNextDay());
-                        manager_1.StageManager.of(this.world).replace(new home_1.HomeStage());
+                        selected = _a.sent();
+                        if (selected === 0) {
+                        }
+                        if (selected === 1) {
+                            this.renderProfile();
+                        }
+                        if (selected === 2) {
+                            manager_1.StageManager.of(this.world).to(new log_1.LogStage());
+                        }
+                        // 睡觉
+                        if (selected === 3) {
+                            manager_1.StageManager.of(this.world).replace(new loading_1.LoadingStage());
+                        }
                         return [2 /*return*/];
                 }
             });
         });
     };
-    return LoadingStage;
+    HomeStage.prototype.renderProfile = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var player, menus, selected;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        player = world_1.World.instance.player;
+                        this.renderer.clear();
+                        this.renderer.writeTitle('状态');
+                        this.renderer.writeLine("\u9971\u98DF\u5EA6: " + player.repletion.toString());
+                        this.renderer.writeLine("\u6E34\u5EA6: " + player.thirst.toString());
+                        menus = [
+                            '返回'
+                        ];
+                        return [4 /*yield*/, this.renderer.writeMenus(menus, 'row')];
+                    case 1:
+                        selected = _a.sent();
+                        if (selected === 0) {
+                            this.renderMain();
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    HomeStage.prototype.preStart = function () {
+        _super.prototype.preStart.call(this);
+        this.renderMain();
+    };
+    return HomeStage;
 }(stage_1.Stage));
-exports.LoadingStage = LoadingStage;
+exports.HomeStage = HomeStage;

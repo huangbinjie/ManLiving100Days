@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "npm run build_js_watch",
     "build_js": "tsc",
     "build_js_watch": "tsc --watch",
     "start_game": "node build/game/game.js",

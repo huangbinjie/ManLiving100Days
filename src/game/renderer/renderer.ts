@@ -1,7 +1,20 @@
 import term from 'terminal-kit'
 import readline from "readline"
-import { AbstractRenderer } from '../../engine/renderer'
 import { AbstractRenderable, isRenderText, isRenderStage } from './types'
+
+export abstract class AbstractRenderer {
+  public abstract write(obj: object): Promise<any>;
+
+  public abstract async read(question: string): Promise<number>;
+}
+
+export class DefaultRenderer implements AbstractRenderer {
+  public write(obj: object): Promise<any> {
+    throw new Error("Method not implemented.");
+  } public read(question: string): Promise<number> {
+    throw new Error("Method not implemented.");
+  }
+}
 
 export class Renderer implements AbstractRenderer {
   private _term = term.terminal

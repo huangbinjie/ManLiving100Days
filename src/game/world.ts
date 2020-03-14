@@ -1,5 +1,5 @@
 import { Renderer } from "./renderer/renderer"
-import { PlayerEntity } from "./ecs/entities/Player"
+import { PlayerEntity } from "./ecs/entities/people/Player"
 import { AbstractWorld } from "../engine/world"
 
 export class World extends AbstractWorld {
@@ -8,6 +8,7 @@ export class World extends AbstractWorld {
   public player = new PlayerEntity()
   // 存活天数
   public liveDays = 0
+  public logs: string[] = ['你开始了新的生活.']
 
   constructor() {
     super()

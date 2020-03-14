@@ -20,6 +20,7 @@ export abstract class AbstractWorld {
   }
 
   public addSystem<T extends AbstractSystem>(system: T) {
+    system.world = this
     this.systems.push(system)
     this.systemHub.actorOf(system)
   }

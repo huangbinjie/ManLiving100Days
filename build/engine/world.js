@@ -17,6 +17,7 @@ var AbstractWorld = /** @class */ (function () {
         return this.entities;
     };
     AbstractWorld.prototype.addSystem = function (system) {
+        system.world = this;
         this.systems.push(system);
         this.systemHub.actorOf(system);
     };

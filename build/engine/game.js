@@ -1,17 +1,15 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var renderer_1 = require("./renderer");
 var updater_1 = require("./updater");
 var manager_1 = require("./stage/manager");
 var Game = /** @class */ (function () {
     function Game(options) {
         this.updater = new updater_1.Updater();
-        this.renderer = new renderer_1.DefaultRenderer();
-        if (options.renderer) {
-            this.renderer = options.renderer;
-        }
         if (options.world) {
             this.world = options.world;
+        }
+        if (options.updater) {
+            this.updater = options.updater;
         }
     }
     Game.prototype.run = function () {
